@@ -1,0 +1,72 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amirhossein</title>
+    <style>
+        .inputvalue
+        {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="massage"></div>
+    <input type="text" class="inputvalue">
+    <button>Click</button>
+</body>
+<script>
+    const massage = document.querySelector(".massage");
+    const guess = document.querySelector("input");
+    const button = document.querySelector("button");
+    let myArray = ["Nadia","Amirhossein","Morteza","Ahmad","Ali"];
+    let gameplay = false;
+    let score = 0;
+    let scrumble = "";
+    let scrumbled = "";
+    button.addEventListener("click",function()
+    {
+    if(!gameplay){
+        gameplay = true;
+        button.innerText = "Geuss";
+        guess.classList.toggle("inputvalue");
+        guess.value ="";
+        scrumble = createWord();
+        scrumbled = randomArray(scrumble.split("")).join("");
+        massage.innerHTML = scrumbled;
+        }else{
+            let usergeuss = guess.value;
+            score++;
+            if(usergeuss === scrumble){
+                gameplay = false;
+                massage.innerHTML = "Correct it was " + scrumble + " it look " + score + " guesses";
+                button.innerText = "Start";
+                guess.classList.toggle("inputvalue");
+            }else
+            {
+                message.innerHTML = "Wrong " + scrambled;
+            }
+        }
+    })
+    
+    function createWord()
+    {
+        let randomIndex = Math.floor(Math.random() *myArray.length);
+        let mytemp = myArray[randomIndex];
+        return mytemp;
+    }
+    function randomArray(err){
+        for(let i = err.length;i>0;i--){
+            let temp = err[i];
+            let j = Math.floor(Math.random() * i+1);
+            err[i] = err[j]
+            err[j] = temp;
+        }
+        return err
+
+    }
+</script>
+</html>
